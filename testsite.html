@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SVG Viewer</title>
     <style>
-        /* Add your CSS styles here */
         #svg-container {
             display: flex;
             flex-wrap: wrap;
@@ -45,22 +44,22 @@
     </div>
 
     <script>
-        // JavaScript code to load and display SVG files
+        //loading SVG files from the svgs i have in the repo
         document.addEventListener('DOMContentLoaded', () => {
             const svgContainer = document.getElementById('svg-container');
             const prevButton = document.getElementById('prev-button');
             const nextButton = document.getElementById('next-button');
             const directoryPath = 'dist/images';
-            const svgFiles = []; // Array to store SVG file paths
-            let currentIndex = 0; // Index of the currently displayed set of SVGs
-            const itemsPerPage = 4; // Number of SVGs to display per page
+            const svgFiles = []; //file path
+            let currentIndex = 0; //current svg displayed
+            const itemsPerPage = 4; //some arbitrary 4 per page right now
 
-            // Function to fetch SVG files from the directory
+            //this should fetch the svgs from the dist/images/
             const fetchSVGFiles = async () => {
                 try {
                     const response = await fetch(directoryPath);
                     const files = await response.text();
-                    const matches = files.match(/.*\.svg/g); // Assuming all files in the directory are SVGs
+                    const matches = files.match(/.*\.svg/g); //im not sure if this works, they are all .svg though
                     if (matches) {
                         svgFiles.push(...matches);
                         showSVGs();
@@ -72,15 +71,15 @@
                 }
             };
 
-            // Function to display the current set of SVGs
+            //showing SVGS
             const showSVGs = () => {
-                svgContainer.innerHTML = ''; // Clear previous content
+                svgContainer.innerHTML = ''; //empty the previous
                 const endIndex = Math.min(currentIndex + itemsPerPage, svgFiles.length);
                 for (let i = currentIndex; i < endIndex; i++) {
                     const svgItem = document.createElement('div');
                     svgItem.classList.add('svg-item');
                     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                    svg.setAttribute('viewBox', '0 0 100 100'); // Adjust viewBox according to your SVGs
+                    svg.setAttribute('viewBox', '0 0 100 100'); //viewbox wierdness im not sure yet
                     svg.addEventListener('click', () => {
                         // Handle click event
                         console.log('Clicked on ' + svgFiles[i]);
@@ -94,13 +93,12 @@
                 updateNavigationButtons();
             };
 
-            // Function to update navigation buttons
+            //for the back and forward
             const updateNavigationButtons = () => {
                 prevButton.disabled = currentIndex === 0;
                 nextButton.disabled = currentIndex + itemsPerPage >= svgFiles.length;
             };
 
-            // Event listeners for navigation buttons
             prevButton.addEventListener('click', () => {
                 currentIndex -= itemsPerPage;
                 showSVGs();
