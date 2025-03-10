@@ -324,8 +324,12 @@ function getRandomFlags(numFlags) {
     return randomFlags;
 }
 
+function delay(ms) {
+    return new Promise(res => setTimeout(res, ms));
+  }
+
 // Function to display flags
-function displayFlags() {
+async function displayFlags() {
     const flagsContainer = document.getElementById('flags-container');
     const content = document.getElementById('content');
     const randomFlags = getRandomFlags(4); // Get 4 random flags
@@ -349,9 +353,10 @@ function displayFlags() {
 
         img.addEventListener('click', () => {
             if (countryName === randomCountryName) {
-                alert("Correct! Well done.");
+                content.textContent = `CORRECT!`;
+                displayFlags()
             } else {
-                alert("Wrong! Try again.");
+                content.textContent = `Incorrect, try again! The Country is ${randomCountryName}`;
             }
         });
 

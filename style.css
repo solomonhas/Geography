@@ -4,6 +4,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    text-align: center;
 }
 
 header, footer {
@@ -15,6 +16,33 @@ header, footer {
 main {
     padding: 20px;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#flags-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates a 2x2 grid */
+    gap: 20px; /* Space between flags */
+    padding: 20px;
+    background-color: #d0d0d0;
+    border-radius: 10px;
+    margin: 20px auto; /* Centering */
+    width: fit-content;
+}
+
+/* Style for the flag images */
+#flags-container img {
+    width: 120px; /* Adjust flag size */
+    height: auto;
+    cursor: pointer;
+    border: 2px solid transparent; /* Optional styling */
+    transition: transform 0.2s ease-in-out;
+}
+
+#flags-container img:hover {
+    transform: scale(1.1); /* Slight zoom effect */
 }
 
 #myButton {
@@ -23,4 +51,5 @@ main {
     color: rgb(255, 255, 255);
     border: none;
     cursor: pointer;
+    margin-top: 20px
 }
