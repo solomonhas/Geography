@@ -13,6 +13,46 @@ header, footer {
     text-align: center;
 }
 
+#settingsButton {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+#settingsPanel {
+    position: fixed;
+    top: 10px;
+    right: -250px;
+    width: 200px;
+    padding: 15px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease-in-out;
+}
+
+#settingsPanel h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+#settingsPanel input {
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+}
+
+#saveSettings {
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
 main {
     padding: 20px;
     flex-grow: 1;

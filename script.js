@@ -1,3 +1,4 @@
+let numFlags = 4; //default to 4
 //All countries and some states
 const countries = {
     "ad": "Andorra",
@@ -310,11 +311,11 @@ const countries = {
 };
 
 //get a random flag
-function getRandomFlags(numFlags) {
+function getRandomFlags(num) {
     const countryCodes = Object.keys(countries);
     const randomFlags = [];
 
-    while (randomFlags.length < numFlags) {
+    while (randomFlags.length < num) {
         const randomCode = countryCodes[Math.floor(Math.random() * countryCodes.length)];
         if (!randomFlags.includes(randomCode)) {
             randomFlags.push(randomCode);
@@ -332,7 +333,7 @@ function delay(ms) {
 async function displayFlags() {
     const flagsContainer = document.getElementById('flags-container');
     const content = document.getElementById('content');
-    const randomFlags = getRandomFlags(4); // Get 4 random flags
+    const randomFlags = getRandomFlags(numFlags); // Get 4 random flags
 
     const randomCountryCode = randomFlags[Math.floor(Math.random() * randomFlags.length)];
     const randomCountryName = countries[randomCountryCode];
@@ -351,18 +352,39 @@ async function displayFlags() {
         img.src = flagUrl;
         img.alt = countryName;
 
-        img.addEventListener('click', () => {
+        img.addEventListener('click', async () => {
             if (countryName === randomCountryName) {
-                content.textContent = `CORRECT!`;
+                content.textContent = "CORRECT!";
+                await delay(1000); 
                 displayFlags()
             } else {
-                content.textContent = `Incorrect, try again! The Country is ${randomCountryName}`;
+                content.textContent = "Incorrect, try again!"
+                await delay(1000);
+                content.textContent = `Click on the flag of ${randomCountryName}`;
             }
         });
 
         flagsContainer.appendChild(img);
     });
 }
+
+document.getElementById('settingsButton').addEventListener('click', () => {
+    const panel = document.getElementById('settingsPanel');
+    panel.style.right = panel.style.right === '10px' ? '-250px' : '10px';
+});
+
+// Save Settings and Update Flags
+document.getElementById('saveSettings').addEventListener('click', () => {
+    const newNumFlags = parseInt(document.getElementById('numFlags').value);
+    if (newNumFlags >= 1 && newNumFlags <= 10) {
+        numFlags = newNumFlags;
+        displayFlags();
+        document.getElementById('settingsPanel').style.right = '-250px';
+    } else {
+        alert("Please enter a number between 1 and 10.");
+    }
+});
+
 
 // Initial flag display on page load
 displayFlags();
