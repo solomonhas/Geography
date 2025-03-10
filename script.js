@@ -346,7 +346,6 @@ function displayFlags() {
         const img = document.createElement('img');
         img.src = flagUrl;
         img.alt = countryName;
-        img.title = countryName;
 
         img.addEventListener('click', () => {
             if (countryName === randomCountryName) {
