@@ -1,4 +1,6 @@
 let numFlags = 4; //default to 4
+let includeStates = false; //default no states
+
 //All countries and some states
 const countries = {
     "ad": "Andorra",
@@ -312,9 +314,13 @@ const countries = {
 
 //get a random flag
 function getRandomFlags(num) {
-    const countryCodes = Object.keys(countries);
-    const randomFlags = [];
+    let countryCodes = Object.keys(countries);
 
+    if (!includeStates) { //if no remove all the start with US
+        countryCodes = countryCodes.filter(code => !code.startsWith('us-'));
+    }
+
+    const randomFlags = [];
     while (randomFlags.length < num) {
         const randomCode = countryCodes[Math.floor(Math.random() * countryCodes.length)];
         if (!randomFlags.includes(randomCode)) {
@@ -327,27 +333,27 @@ function getRandomFlags(num) {
 
 function delay(ms) {
     return new Promise(res => setTimeout(res, ms));
-  }
+}
 
 // Function to display flags
 async function displayFlags() {
     const flagsContainer = document.getElementById('flags-container');
     const content = document.getElementById('content');
-    const randomFlags = getRandomFlags(numFlags); // Get 4 random flags
+    const randomFlags = getRandomFlags(numFlags); //get the ammount of flags needed
 
     const randomCountryCode = randomFlags[Math.floor(Math.random() * randomFlags.length)];
     const randomCountryName = countries[randomCountryCode];
 
     content.textContent = `Click on the flag of ${randomCountryName}`;
 
-    // Clear the container before adding new flags
+    //Clear the container... idk
     flagsContainer.innerHTML = '';
 
     randomFlags.forEach(code => {
         const flagUrl = `https://flagcdn.com/w160/${code}.png`;
         const countryName = countries[code];
 
-        // Create an image element and append it to the container
+        //create the image from the flag URL?????
         const img = document.createElement('img');
         img.src = flagUrl;
         img.alt = countryName;
@@ -373,21 +379,28 @@ document.getElementById('settingsButton').addEventListener('click', () => {
     panel.style.right = panel.style.right === '10px' ? '-250px' : '10px';
 });
 
-// Save Settings and Update Flags
+//This function is for the save
 document.getElementById('saveSettings').addEventListener('click', () => {
     const newNumFlags = parseInt(document.getElementById('numFlags').value);
-    if (newNumFlags >= 1 && newNumFlags <= 10) {
+    checkbox = document.getElementById('includeStates');
+    if (checkbox.checked) {
+        includeStates = true; //if the checkbox is true, show states
+    } else {
+        includeStates = false; //or else leave as false HORRIBLE BUT IT FINALLY WORKS
+    }
+
+    if (newNumFlags >= 2 && newNumFlags <= 10) {
         numFlags = newNumFlags;
         displayFlags();
         document.getElementById('settingsPanel').style.right = '-250px';
     } else {
-        alert("Please enter a number between 1 and 10.");
+        alert("Please enter a number between 2 and 10.");
     }
 });
 
 
-// Initial flag display on page load
+//Load the flags
 displayFlags();
 
-// Button to trigger new set of flags
+//If you want new flags click a button
 document.getElementById('myButton').addEventListener('click', displayFlags);
