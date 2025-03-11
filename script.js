@@ -310,7 +310,6 @@ const countries = {
     "za": "South Africa",
     "zm": "Zambia",
     "zw": "Zimbabwe"
-    // Add the rest of your countries here...
 };
 
 //get a random flag
@@ -337,7 +336,7 @@ function delay(ms) {
 }
 
 
-// Function to display flags
+//This is to display flags
 async function displayFlags() {
     const flagsContainer = document.getElementById('flags-container');
     const content = document.getElementById('content');
