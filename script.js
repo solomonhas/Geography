@@ -1,5 +1,7 @@
 let numFlags = 4; //default to 4
 let includeStates = false; //default no states
+let streak = 0;  //streak counter
+let correctAnswer = null; //correct flag
 
 //All countries and some states
 const countries = {
@@ -335,11 +337,25 @@ function delay(ms) {
     return new Promise(res => setTimeout(res, ms));
 }
 
+function checkAnswer(selectedFlag) {  //as the function says
+    if (selectedFlag === correctAnswer) {
+        streak++;  //Increase if you got it correct
+    } else {
+        streak = 0;  //reset if you lose
+    }
+    updateStreakDisplay();
+}
+
+function updateStreakDisplay() {
+    document.getElementById('streak').textContent = `Current Streak: ${streak}`;
+}
+
 // Function to display flags
 async function displayFlags() {
     const flagsContainer = document.getElementById('flags-container');
     const content = document.getElementById('content');
     const randomFlags = getRandomFlags(numFlags); //get the ammount of flags needed
+    const streakDisplay = document.getElementById('streak');
 
     const randomCountryCode = randomFlags[Math.floor(Math.random() * randomFlags.length)];
     const randomCountryName = countries[randomCountryCode];
@@ -361,10 +377,14 @@ async function displayFlags() {
         img.addEventListener('click', async () => {
             if (countryName === randomCountryName) {
                 content.textContent = "CORRECT!";
+                streak++;
+                streakDisplay.textContent = `Current Streak: ${streak}`;
                 await delay(1000); 
                 displayFlags()
             } else {
+                streak = 0;
                 content.textContent = "Incorrect, try again!"
+                streakDisplay.textContent = `Current Streak: ${streak}`;
                 await delay(1000);
                 content.textContent = `Click on the flag of ${randomCountryName}`;
             }
@@ -386,7 +406,7 @@ document.getElementById('saveSettings').addEventListener('click', () => {
     if (checkbox.checked) {
         includeStates = true; //if the checkbox is true, show states
     } else {
-        includeStates = false; //or else leave as false HORRIBLE BUT IT FINALLY WORKS
+        includeStates = false; //or else leave as false HORRIBLE BUT IT FINALLY WORKS //it had to be let not const
     }
 
     if (newNumFlags >= 2 && newNumFlags <= 10) {
@@ -395,6 +415,16 @@ document.getElementById('saveSettings').addEventListener('click', () => {
         document.getElementById('settingsPanel').style.right = '-250px';
     } else {
         alert("Please enter a number between 2 and 10.");
+    }
+});
+
+document.addEventListener('click', (event) => {
+    const settingsPanel = document.getElementById('settingsPanel');
+    const settingsButton = document.getElementById('settingsButton');
+    
+    // Check if the clicked target is outside the settings panel and button
+    if (!settingsPanel.contains(event.target) && event.target !== settingsButton) {
+        settingsPanel.style.right = '-250px'; // Close the settings panel
     }
 });
 

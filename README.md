@@ -1,5 +1,6 @@
 # Geography
-Geography Quiz Game built with 
+Geography Flag game, shows a set ammount of flags, from 2-10. Prompts the user to click on the correct flag for the random country.
+Settings tab that allows the user to set the ammount of flags, or if US States are included. Includes a basic streak counter.
 
 
 ## Usage
