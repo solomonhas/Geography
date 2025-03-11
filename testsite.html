@@ -8,19 +8,8 @@
 </head>
 <body>
     <header>
-        <h1>Flag Guesser</h1>
+        <h1>Flag</h1>
         <button id="settingsButton">⚙️</button>
-
-        <!-- Settings Panel inside the header -->
-        <div id="settingsPanel">
-            <h2>Settings</h2>
-            <label for="numFlags">Number of Flags:</label>
-            <input type="number" id="numFlags" min="2" max="10" value="4">
-            <label>
-                <input type="checkbox" id="includeStates"> Include US States </label>
-            <button id="saveSettings">Save</button>
-        </div>
-        
     </header>
 
     <!-- Settings Panel -->
@@ -33,14 +22,16 @@
         <button id="saveSettings">Save</button>
     </div>
 
+    <!-- Button to trigger a new set of flags -->
+    <button id="myButton">Show New Flags</button>
+
     <main>
         <p id="content">Click the correct country</p>
-
+        
+        <p id="streak">Current Streak: 0</p>
+        
         <!-- Section for displaying random flags -->
         <div id="flags-container"></div>
-
-        <!-- Button to trigger a new set of flags -->
-        <button id="myButton">Show New Flags</button>
     </main>
     <footer>
         <p>&copy; 2025 slug541</p>

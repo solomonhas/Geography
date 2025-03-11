@@ -8,8 +8,8 @@ body {
 }
 
 header, footer {
-    background-color: #a6a3a3;
-    padding: 10px;
+    background-color: #8d8d8d;
+    padding: 5px;
     text-align: center;
 }
 
@@ -19,13 +19,20 @@ header, footer {
     font-size: 24px;
     cursor: pointer;
     color: white;
+    position: absolute; /* Position relative to the nearest positioned ancestor (header) */
+    top: 10px; /* Adjust the top space */
+    right: 10px; /* Adjust the right space */
 }
 
 #settingsPanel {
     position: fixed;
+    top: 10px;
     right: -250px;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    opacity: 0;
+    width: 200px;
+    padding: 15px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease-in-out;
 }
 
 #settingsPanel h2 {
@@ -50,7 +57,7 @@ header, footer {
 }
 
 main {
-    padding: 20px;
+    padding: 40px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -59,12 +66,12 @@ main {
 }
 #flags-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Creates a 2x2 grid */
-    gap: 20px; /* Space between flags */
+    grid-template-columns: repeat(2, 1fr); /* grid for the flag */
+    gap: 20px; /* Flag spacing */
     padding: 20px;
     background-color: #d0d0d0;
     border-radius: 10px;
-    margin: 20px auto; /* Centering */
+    margin: 10px auto; /* Centering */
     width: fit-content;
 }
 
@@ -77,14 +84,25 @@ main {
 }
 
 #flags-container img:hover {
-    transform: scale(1.1); /* Slight zoom effect */
+    transform: scale(1.1); /* Slisdsdsdom effect */
 }
 
 #myButton {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: rgb(255, 255, 255);
+    position: absolute;
+    top: 100px; /* Just below the */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* How high up it is */
+    font-size: 18px;
+    padding: 10px 25px; /* Size of the button */
+    background-color: #8b8f8b; /* BUTTON COLOR */
+    color: white; /* TEXT COLOR */
     border: none;
-    cursor: pointer;
-    margin-top: 20px
+    border-radius: 5px; /* rounded corner */
+    cursor: pointer; /*for the cursor*/
+    width: 200px; /* width of ??? */
+}
+
+#myButton:hover {
+    background-color: #3d903c; /* Optional: Change color on hover */
 }

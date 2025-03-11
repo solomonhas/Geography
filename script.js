@@ -1,7 +1,6 @@
 let numFlags = 4; //default to 4
 let includeStates = false; //default no states
 let streak = 0;  //streak counter
-let correctAnswer = null; //correct flag
 
 //All countries and some states
 const countries = {
@@ -337,18 +336,6 @@ function delay(ms) {
     return new Promise(res => setTimeout(res, ms));
 }
 
-function checkAnswer(selectedFlag) {  //as the function says
-    if (selectedFlag === correctAnswer) {
-        streak++;  //Increase if you got it correct
-    } else {
-        streak = 0;  //reset if you lose
-    }
-    updateStreakDisplay();
-}
-
-function updateStreakDisplay() {
-    document.getElementById('streak').textContent = `Current Streak: ${streak}`;
-}
 
 // Function to display flags
 async function displayFlags() {
@@ -422,7 +409,7 @@ document.addEventListener('click', (event) => {
     const settingsPanel = document.getElementById('settingsPanel');
     const settingsButton = document.getElementById('settingsButton');
     
-    // Check if the clicked target is outside the settings panel and button
+    //if you click outside, close it
     if (!settingsPanel.contains(event.target) && event.target !== settingsButton) {
         settingsPanel.style.right = '-250px'; // Close the settings panel
     }
