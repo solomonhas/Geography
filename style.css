@@ -9,44 +9,54 @@ body {
 
 @media (max-width: 768px) {
     .container {
-        padding: 10px;
+        padding: 5px; /* smaller padding */
     }
 
     header {
-        padding: 10px;
+        padding: 5px; /* smaller padding */
+        font-size: 22px; 
     }
 
     #myButton {
-        width: 80%; /* Make button width responsive on tablets */
-        font-size: 16px;
-        padding: 8px 20px;
+        font-size: 16px; 
+        padding: 8px 20px; /* smaller padding */
+        width: auto; /* auto change for width */
+    }
+
+    #flags-container {
+        grid-template-columns: repeat(2, 1fr); /* this is two flags per row.  */
+        gap: 10px; 
+        padding: 10px; /* smaller padding */
+    }
+
+    #flags-container img {
+        width: 120px; /* Adjust flag size to be smaller */
     }
 }
 
 @media (max-width: 480px) {
     header {
-        font-size: 18px;
+        font-size: 18px; /* Further reduce font size for smaller screens */
         padding: 5px;
     }
 
     body {
-        font-size: 14px;
+        font-size: 14px; /* Adjust overall font size */
     }
 
     #myButton {
-        width: 90%; /* Full width for smaller screens */
-        font-size: 14px;
-        padding: 6px 15px;
+        font-size: 14px; /* Smaller button font size */
+        padding: 6px 15px; /* smaller padding */
     }
 
-    /* Adjust flags grid for small screens */
     #flags-container {
-        grid-template-columns: 1fr; /* Single column layout */
-        gap: 10px; /* Smaller gap for flags */
+        grid-template-columns: 1fr; /* Stack flags in a single column */
+        gap: 8px; /* Further reduce flag spacing */
+        padding: 8px; /* Reduce padding */
     }
 
     #flags-container img {
-        width: 120px; /* Adjust flag size for small screens */
+        width: 100px; /* Adjust flag size to be smaller */
     }
 }
 
