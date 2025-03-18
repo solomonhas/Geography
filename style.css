@@ -1,3 +1,4 @@
+/* Overall Settings */
 body {
     font-family: sans-serif;
     margin: 0;
@@ -7,74 +8,110 @@ body {
     text-align: center;
 }
 
+/* SHOW FLAG BUTTON */
+#myButton {
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    padding: 8px 20px;
+    background-color: #3b77f0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 200px;
+    z-index: 1000;
+    margin-top: 15px;
+}
+
+#myButton:hover {
+    background-color: #3d903c;
+}
+
+/* phones smaller than 768 pixels */
 @media (max-width: 768px) {
     .container {
-        padding: 5px; /* smaller padding */
+        padding: 5px;
     }
 
     header {
-        padding: 5px; /* smaller padding */
-        font-size: 22px; 
+        padding: 5px;
     }
 
-    #myButton {
-        font-size: 16px; 
-        padding: 8px 20px; /* smaller padding */
-        width: auto; /* auto change for width */
+    main {
+        padding: 20px;
     }
 
+    /* Adjust flag container */
     #flags-container {
-        grid-template-columns: repeat(2, 1fr); /* this is two flags per row.  */
-        gap: 10px; 
-        padding: 10px; /* smaller padding */
+        grid-template-columns: repeat(2, 1fr); /* Two columns for mobile/tablet */
+        gap: 10px; /* Reduce gap between flags */
+        padding: 10px;
+        margin-top: 10px; /* Bring the flags container closer */
     }
 
     #flags-container img {
-        width: 120px; /* Adjust flag size to be smaller */
+        width: 120px; /* Increase flag size on mobile */
+        height: auto;
     }
 }
 
+/* This is for 480 pixel phones or small devices */
 @media (max-width: 480px) {
     header {
-        font-size: 18px; /* Further reduce font size for smaller screens */
+        font-size: 18px;
         padding: 5px;
     }
 
     body {
-        font-size: 14px; /* Adjust overall font size */
+        font-size: 14px; 
     }
 
     #myButton {
-        font-size: 14px; /* Smaller button font size */
-        padding: 6px 15px; /* smaller padding */
+        margin-top: 10px; 
+        font-size: 14px;
+        padding: 6px 15px;
+        width: 160px;
     }
 
     #flags-container {
-        grid-template-columns: 1fr; /* Stack flags in a single column */
-        gap: 8px; /* Further reduce flag spacing */
-        padding: 8px; /* Reduce padding */
+        grid-template-columns: 1fr; /* Single column for mobile small screens?? maybe */
+        gap: 8px; 
+        padding: 8px;
+        margin-top: 10px; 
     }
 
     #flags-container img {
-        width: 100px; /* Adjust flag size to be smaller */
+        width: 150px; /* flag size on the phones */
     }
 }
 
+/* Header & Footer */
 header, footer {
     background-color: #f1f1f1;
     padding: 5px;
     text-align: center;
 }
 
+footer {
+    background-color: #f1f1f1;
+    padding: 5px;
+    text-align: center;
+    margin-top: auto; /* footer at the bottom of the screen */
+}
+
+/* These settings panels are nice */
 #settingsButton {
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
     color: white;
-    position: absolute; /* Position relative to the nearest positioned ancestor (header) */
-    top: 10px; /* Adjust the top space */
-    right: 10px; /* Adjust the right space */
+    position: absolute; /* not sure why i need this */
+    top: 10px; 
+    right: 10px; 
 }
 
 #settingsPanel {
@@ -86,7 +123,7 @@ header, footer {
     background: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transition: right 0.3s ease-in-out;
-    z-index: 9999; /* make sure settings above all */
+    z-index: 9999; /* settings above all others, */
 }
 
 #settingsPanel h2 {
@@ -109,66 +146,26 @@ header, footer {
     border: none;
     cursor: pointer;
 }
-
-main {
-    padding: 40px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
+/* where the flags go */
 #flags-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Default to two columns for larger screens */
-    gap: 20px; /* Flag spacing */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
     padding: 20px;
     background-color: #d0d0d0;
     border-radius: 10px;
-    margin: 10px auto; /* Centering */
+    margin: 10px auto;
     width: fit-content;
 }
 
 #flags-container img {
-    max-width: 100%; /* Allow flag images to scale based on container */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 100%;
+    height: auto;
     cursor: pointer;
-    border: 2px solid transparent; /* Optional styling */
+    border: 2px solid transparent;
     transition: transform 0.2s ease-in-out;
 }
 
 #flags-container img:hover {
-    transform: scale(1.1); /* Hover effect */
-}
-
-#myButton {
-    position: relative; /* Move away from absolute positioning */
-    margin-top: 20px; /* Adjust the spacing based on your header size */
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 18px;
-    padding: 10px 25px;
-    background-color: #3b77f0;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 200px;
-    z-index: 1;
-}
-
-@media (max-width: 768px) {
-    #myButton {
-        margin-top: 15px; /* Adjust margin for tablet */
-    }
-}
-
-@media (max-width: 480px) {
-    #myButton {
-        margin-top: 10px; /* Adjust margin for mobile */
-    }
-}
-#myButton:hover {
-    background-color: #3d903c; /* Optional: Change color on hover */
+    transform: scale(1.1); /* hover over the flags */
 }
