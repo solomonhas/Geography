@@ -7,5 +7,5 @@ Settings tab that allows the user to set the ammount of flags, or if US States a
 
 This program uses various data from https://flagpedia.net/. Including public domain images of flags and the ISO 3166 Country Codes found in Geography\dist\codes.json.
 
-
+"sudo cp -r * /var/www/html/"
 
