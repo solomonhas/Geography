@@ -51,7 +51,7 @@ body {
 }
 
 header, footer {
-    background-color: #8d8d8d;
+    background-color: #f1f1f1;
     padding: 5px;
     text-align: center;
 }
@@ -76,6 +76,7 @@ header, footer {
     background: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transition: right 0.3s ease-in-out;
+    z-index: 9999; /* make sure settings above all */
 }
 
 #settingsPanel h2 {
@@ -132,21 +133,32 @@ main {
 }
 
 #myButton {
-    position: absolute;
-    top: 100px; /* Just below the */
+    position: relative; /* Move away from absolute positioning */
+    margin-top: 20px; /* Adjust the spacing based on your header size */
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1000; /* How high up it is */
     font-size: 18px;
-    padding: 10px 25px; /* Size of the button */
-    background-color: #8b8f8b; /* BUTTON COLOR */
-    color: white; /* TEXT COLOR */
+    padding: 10px 25px;
+    background-color: #3b77f0;
+    color: white;
     border: none;
-    border-radius: 5px; /* rounded corner */
-    cursor: pointer; /*for the cursor*/
-    width: 200px; /* width of ??? */
+    border-radius: 5px;
+    cursor: pointer;
+    width: 200px;
+    z-index: 1;
 }
 
+@media (max-width: 768px) {
+    #myButton {
+        margin-top: 15px; /* Adjust margin for tablet */
+    }
+}
+
+@media (max-width: 480px) {
+    #myButton {
+        margin-top: 10px; /* Adjust margin for mobile */
+    }
+}
 #myButton:hover {
     background-color: #3d903c; /* Optional: Change color on hover */
 }
