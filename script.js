@@ -1,6 +1,7 @@
 let numFlags = 4; //default to 4
 let includeStates = false; //default no states
 let streak = 0;  //streak counter
+let lastChosenCountry = null; 
 
 //All countries and some states
 const countries = {
@@ -320,6 +321,11 @@ function getRandomFlags(num) {
         countryCodes = countryCodes.filter(code => !code.startsWith('us-'));
     }
 
+    if (lastChosenCountry) {
+        //if you somehow get the same country, choose a different one.
+        countryCodes = countryCodes.filter(code => code !== lastChosenCountry)
+    }
+
     const randomFlags = [];
     while (randomFlags.length < num) {
         const randomCode = countryCodes[Math.floor(Math.random() * countryCodes.length)];
@@ -347,6 +353,7 @@ async function displayFlags() {
     const randomCountryName = countries[randomCountryCode];
 
     content.textContent = `Click on the flag of ${randomCountryName}`;
+    lastChosenCountry = randomCountryCode; //store the last one that was picked
 
     //Clear the container... idk
     flagsContainer.innerHTML = '';
