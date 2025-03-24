@@ -1,17 +1,21 @@
 require('dotenv').config();
-
 const express = require('express');
 const { Pool } = require('pg');
+
 const app = express();
 app.use(express.json());
+
+
 
 const pool = new Pool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
+    port: process.env.DB_PORT,  //DATABASE PORT
   });
+
+const PORT = process.env.PORT || 3000; //EXPRESS APP PORT
 
 pool.connect()
   .then(() => console.log('Connected to the SQL'))
@@ -38,7 +42,6 @@ app.get('/leaderboard', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => { //port either in my env file or 3000
   console.log('Server is running, port ${PORT}');
 });
